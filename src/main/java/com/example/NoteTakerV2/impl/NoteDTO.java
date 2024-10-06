@@ -1,5 +1,7 @@
 package com.example.NoteTakerV2.impl;
 
+import com.example.NoteTakerV2.customObj.NoteResponse;
+import com.example.NoteTakerV2.dto.SuperDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
