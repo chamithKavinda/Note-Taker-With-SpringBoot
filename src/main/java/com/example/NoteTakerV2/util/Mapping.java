@@ -1,5 +1,9 @@
 package com.example.NoteTakerV2.util;
 
+import com.example.NoteTakerV2.entity.NoteEntity;
+import com.example.NoteTakerV2.entity.UserEntity;
+import com.example.NoteTakerV2.impl.NoteDTO;
+import com.example.NoteTakerV2.impl.UserDTO;
 import org.example.notetaker.entity.NoteEntity;
 import org.example.notetaker.entity.UserEntity;
 import org.example.notetaker.impl.NoteDTO;
