@@ -10,15 +10,6 @@ import com.example.NoteTakerV2.impl.NoteDTO;
 import com.example.NoteTakerV2.util.AppUtil;
 import com.example.NoteTakerV2.util.Mapping;
 import jakarta.transaction.Transactional;
-import org.example.notetaker.customObj.NoteErrorResponse;
-import org.example.notetaker.customObj.NoteResponse;
-import org.example.notetaker.dao.NoteDao;
-import org.example.notetaker.entity.NoteEntity;
-import org.example.notetaker.exception.DataPersistFailedException;
-import org.example.notetaker.exception.NoteNotFound;
-import org.example.notetaker.impl.NoteDTO;
-import org.example.notetaker.util.AppUtil;
-import org.example.notetaker.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
