@@ -1,12 +1,12 @@
 package com.example.NoteTakerV2.controller;
 
+import com.example.NoteTakerV2.customObj.UserResponse;
+import com.example.NoteTakerV2.exception.DataPersistFailedException;
+import com.example.NoteTakerV2.exception.UserNotFoundException;
+import com.example.NoteTakerV2.impl.UserDTO;
+import com.example.NoteTakerV2.service.UserService;
+import com.example.NoteTakerV2.util.AppUtil;
 import lombok.RequiredArgsConstructor;
-import org.example.notetaker.customObj.UserResponse;
-import org.example.notetaker.exception.DataPersistFailedException;
-import org.example.notetaker.exception.UserNotFoundException;
-import org.example.notetaker.impl.UserDTO;
-import org.example.notetaker.service.UserService;
-import org.example.notetaker.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
