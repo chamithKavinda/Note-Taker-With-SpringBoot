@@ -1,5 +1,7 @@
 package com.example.NoteTakerV2.service;
 
+import com.example.NoteTakerV2.customObj.NoteResponse;
+import com.example.NoteTakerV2.impl.NoteDTO;
 import org.example.notetaker.customObj.NoteResponse;
 import org.example.notetaker.impl.NoteDTO;
 
