@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("api/v1/auth")
 public class AuthController {
+
     @PostMapping(value = "signup",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<JWTResponse> signUp(
             @RequestPart("firstName") String firstName,
