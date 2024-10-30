@@ -5,16 +5,22 @@ import com.example.NoteTakerV2.impl.UserDTO;
 import com.example.NoteTakerV2.jwtmodels.JwtAuthResponse;
 import com.example.NoteTakerV2.jwtmodels.SignIn;
 import com.example.NoteTakerV2.util.Mapping;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+
+@Service
+@RequiredArgsConstructor
 public class AuthenticationServiceIMPL  implements AuthenticationService{
     private final UserDao userDao;
     private final JWTService jwtService;
     private final Mapping mapping;
     //utils
     private final AuthenticationManager authenticationManager;
+
     @Override
     public JwtAuthResponse signIn(SignIn signIn) {
         authenticationManager.authenticate(
@@ -24,6 +30,7 @@ public class AuthenticationServiceIMPL  implements AuthenticationService{
         var generatedToken = jwtService.generateToken(userByEmail);
         return JwtAuthResponse.builder().token(generatedToken).build() ;
     }
+
     @Override
     public JwtAuthResponse signUp(UserDTO signUpUser) {
         var savedUser = userDao.save(mapping.convertToUserEntity(signUpUser));

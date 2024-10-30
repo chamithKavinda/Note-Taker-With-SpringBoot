@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-
     private final AuthenticationService authenticationService;
     private final PasswordEncoder passwordEncoder;
 
@@ -30,7 +29,7 @@ public class AuthController {
             @RequestPart ("email") String email,
             @RequestPart ("password") String password,
             @RequestPart ("profilePic") MultipartFile profilePic,
-            @RequestPart ("Role") String role) { {
+            @RequestPart ("Role") String role) {
         try {
             String base64ProfilePic = AppUtil.toBase64ProfilePic(profilePic);
             UserDTO buildUserDTO = new UserDTO();
@@ -40,6 +39,7 @@ public class AuthController {
             buildUserDTO.setEmail(email);
             buildUserDTO.setPassword(passwordEncoder.encode(password));
             buildUserDTO.setProfilePic(base64ProfilePic);
+            buildUserDTO.setRole(role);
             //send to the service layer
             return ResponseEntity.ok(authenticationService.signUp(buildUserDTO));
         }catch (DataPersistFailedException e){
@@ -49,12 +49,12 @@ public class AuthController {
         }
     }
     @PostMapping(value = "signin")
-        public ResponseEntity<JwtAuthResponse> signIn(@RequestBody SignIn signIn) {
-            return ResponseEntity.ok(authenticationService.signIn(signIn));
-        }
-        @PostMapping("refresh")
-        public ResponseEntity<JwtAuthResponse> refreshToken (@RequestParam ("refreshToken") String refreshToken){
-            return ResponseEntity.ok(authenticationService.refreshToken(refreshToken));
-        }
+    public ResponseEntity<JwtAuthResponse> signIn(@RequestBody SignIn signIn) {
+        return ResponseEntity.ok(authenticationService.signIn(signIn));
     }
+    @PostMapping("refresh")
+    public ResponseEntity<JwtAuthResponse> refreshToken (@RequestParam ("refreshToken") String refreshToken) {
+        return ResponseEntity.ok(authenticationService.refreshToken(refreshToken));
+    }
+
 }
