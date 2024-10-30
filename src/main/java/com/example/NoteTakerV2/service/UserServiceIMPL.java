@@ -12,6 +12,7 @@ import com.example.NoteTakerV2.util.Mapping;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class UserServiceIMPL implements UserService{
     @Override
     public UserResponse getSelectedUser(String userId) {
         if(userDao.existsById(userId)){
-            UserEntity userEntityByUserId = userDao.getUserEntityByUserId(userId);
+            UserEntity userEntityByUserId = userDao.getReferenceById(userId);
             return (UserResponse) mapping.convertToUserDTO(userEntityByUserId);
         }else {
             return new UserErrorResponse(0, "User not found");
@@ -74,4 +75,13 @@ public class UserServiceIMPL implements UserService{
         List<UserEntity> getAllUsers = userDao.findAll();
         return mapping.convertUserToDTOList(getAllUsers);
     }
+
+    @Override
+    public UserDetailsService userDetailsService() {
+        return email ->
+                userDao.findByEmail(email)
+                        .orElseThrow(()-> new UserNotFoundException("User Not found"));
+    }
+
+
 }
