@@ -15,32 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("api/v1/auth")
 public class AuthController {
 
-    @PostMapping(value = "signup",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<JWTResponse> signUp(
-            @RequestPart("firstName") String firstName,
-            @RequestPart ("lastName") String lastName,
-            @RequestPart ("email") String email,
-            @RequestPart ("password") String password,
-            @RequestPart ("profilePic") MultipartFile profilePic) {
-        try {
-            String base64ProfilePic = AppUtil.toBase64ProfilePic(profilePic);
-            UserDTO buildUserDTO = new UserDTO();
-            buildUserDTO.setFirstName(firstName);
-            buildUserDTO.setLastName(lastName);
-            buildUserDTO.setEmail(email);
-            buildUserDTO.setPassword(password);
-            buildUserDTO.setProfilePic(base64ProfilePic);
-            //send to the service layer
-            userService.saveUser(buildUserDTO);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (DataPersistFailedException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PostMapping(value = "signup")
+    public ResponseEntity<JWTResponse> signUp(){
+        return null;
     }
     @PostMapping(value = "signin")
-    public ResponseEntity<JWTResponse> signIn(@RequestBody SignIn signIn) {
+    public ResponseEntity<JWTResponse> signIn(){
         return null;
     }
 }
